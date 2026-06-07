@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-felt-900 text-text-primary font-sans antialiased;
+    background-image: radial-gradient(ellipse at 50% 0%, #1a2540 0%, #0b1120 60%, #05080f 100%);
+    background-attachment: fixed;
+    margin: 0;
+  }
+
+  ::-webkit-scrollbar        { width: 6px; }
+  ::-webkit-scrollbar-track  { @apply bg-felt-950; }
+  ::-webkit-scrollbar-thumb  { @apply bg-luck-goldMuted rounded-full; }
+  ::-webkit-scrollbar-thumb:hover { @apply bg-luck-gold; }
+
+  ::selection {
+    @apply bg-luck-gold text-felt-950;
+  }
+}
+
+@layer components {
+  .card-panel {
+    @apply bg-felt-700 border border-luck-goldMuted rounded-card p-6 shadow-card-lift;
+    background-image: linear-gradient(135deg, rgba(212,175,55,0.08) 0%, transparent 50%, rgba(212,175,55,0.04) 100%);
+  }
+
+  .section-container {
+    @apply max-w-6xl mx-auto px-6 py-section;
+  }
+
+  .text-gold-shimmer {
+    background: linear-gradient(105deg, #7a5c00 0%, #d4af37 40%, #f0c040 50%, #d4af37 60%, #7a5c00 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    @apply animate-shimmer;
+  }
+
+  .odds-badge {
+    @apply bg-odds-muted text-odds font-mono text-xs px-2 py-0.5 rounded shadow-neon-green;
+  }
+
+  .section-divider {
+    @apply h-px w-full my-2;
+    background: linear-gradient(90deg, transparent, #d4af37, transparent);
+  }
+
+  .btn-primary {
+    @apply bg-luck-gold text-felt-950 font-semibold px-6 py-2.5 rounded-card
+           hover:bg-luck-goldLight transition-all duration-200
+           shadow-neon-gold hover:shadow-neon-gold active:scale-95 cursor-pointer;
+  }
+
+  .btn-outline {
+    @apply border border-luck-goldMuted text-luck-gold font-semibold px-6 py-2.5 rounded-card
+           hover:border-luck-gold hover:bg-luck-gold hover:text-felt-950
+           transition-all duration-200 active:scale-95 cursor-pointer;
+  }
+
+  .section-heading {
+    @apply font-display text-4xl font-bold text-text-primary mb-3;
+  }
+
+  .section-subheading {
+    @apply text-text-secondary text-sm uppercase tracking-widest font-mono mb-10;
+  }
+}
