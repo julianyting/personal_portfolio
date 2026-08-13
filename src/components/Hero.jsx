@@ -1,9 +1,24 @@
 import { motion } from 'framer-motion'
 import { staggerContainer, fadeSlideUp } from '../utils/motionVariants'
+import shanghaiBund from '../assets/shanghai-bund.jpg'
+import nightOut from '../assets/night-out.jpg'
+import warriorsGame from '../assets/warriors-game.jpg'
+import friendsOut from '../assets/friends-out.jpg'
+import themePark from '../assets/theme-park.jpg'
+import shengJianBao from '../assets/sheng-jian-bao.jpg'
+
+const gallery = [
+  { src: shanghaiBund,   alt: 'Julian on the Bund waterfront in Shanghai at night' },
+  { src: warriorsGame,   alt: 'Julian in a Warriors jersey at a Golden State game' },
+  { src: shengJianBao,   alt: 'A basket of sheng jian bao' },
+  { src: friendsOut,     alt: 'Julian out with friends on a sunny afternoon' },
+  { src: themePark,      alt: 'Julian and friends packed into a theme park ride' },
+  { src: nightOut,       alt: 'Julian and a friend at a night out' },
+]
 
 export default function Hero() {
   return (
-    <div className="relative min-h-screen flex items-center justify-center overflow-hidden bg-felt-gradient">
+    <div className="relative min-h-screen flex items-center justify-center overflow-hidden bg-felt-gradient py-28">
       {/* Mahjong tile cultural texture */}
       <div
         className="absolute inset-0 flex items-center justify-center pointer-events-none select-none"
@@ -27,7 +42,7 @@ export default function Hero() {
         >
           {/* Eyebrow */}
           <motion.p variants={fadeSlideUp} className="font-mono text-odds text-sm tracking-wider">
-            &lt; Data Science Student /&gt;
+            
           </motion.p>
 
           {/* Name */}
@@ -38,12 +53,12 @@ export default function Hero() {
 
           {/* Subtitle */}
           <motion.p variants={fadeSlideUp} className="text-text-secondary text-lg md:text-xl max-w-xl">
-            Chapman University &nbsp;·&nbsp; Poker & Probability &nbsp;·&nbsp; Sports Analytics
+            Data Science student at Chapman University
           </motion.p>
 
           {/* Taiwanese heritage line */}
           <motion.p variants={fadeSlideUp} className="text-text-muted text-sm font-mono">
-            台灣的心 · 美國的夢 · 資料科學的道路
+            Golfer, Sports Fan, K-Pop Fan, Gambler, Foody
           </motion.p>
 
           {/* CTAs */}
@@ -62,23 +77,54 @@ export default function Hero() {
               Download Resume
             </a>
           </motion.div>
-        </motion.div>
 
-        {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2, duration: 0.8 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1"
-        >
-          <span className="text-text-muted text-xs font-mono tracking-widest">SCROLL</span>
-          <motion.div
-            animate={{ y: [0, 6, 0] }}
-            transition={{ repeat: Infinity, duration: 1.4, ease: 'easeInOut' }}
-            className="w-0.5 h-6 bg-luck-goldMuted/60 rounded-full"
-          />
+          {/* Photo gallery — scrolling hand of cards */}
+          <motion.div variants={fadeSlideUp} className="w-full mt-8">
+            <div
+              className="relative overflow-hidden py-3
+                [mask-image:linear-gradient(90deg,transparent,#000_10%,#000_90%,transparent)]"
+            >
+              <div
+                className="flex w-max gap-4 animate-marquee motion-reduce:animate-none
+                  hover:[animation-play-state:paused]"
+              >
+                {[...gallery, ...gallery].map(({ src, alt }, i) => (
+                  <div
+                    key={i}
+                    aria-hidden={i >= gallery.length}
+                    className="shrink-0 w-28 h-36 sm:w-32 sm:h-44 rounded-card overflow-hidden
+                      border border-luck-goldMuted/50 shadow-card-lift
+                      hover:border-luck-gold hover:scale-105
+                      transition-[transform,border-color] duration-200"
+                  >
+                    <img
+                      src={src}
+                      alt={i >= gallery.length ? '' : alt}
+                      loading="lazy"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
         </motion.div>
       </div>
+
+      {/* Scroll indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.2, duration: 0.8 }}
+        className="absolute z-10 bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1"
+      >
+        <span className="text-text-muted text-xs font-mono tracking-widest">SCROLL</span>
+        <motion.div
+          animate={{ y: [0, 6, 0] }}
+          transition={{ repeat: Infinity, duration: 1.4, ease: 'easeInOut' }}
+          className="w-0.5 h-6 bg-luck-goldMuted/60 rounded-full"
+        />
+      </motion.div>
     </div>
   )
 }

@@ -60,8 +60,8 @@ export default function Skills() {
         viewport={{ once: true, margin: '-80px' }}
         className="text-center mb-12"
       >
-        <motion.p variants={fadeSlideUp} className="section-subheading">— Stack &amp; Tools —</motion.p>
-        <motion.h2 variants={fadeSlideUp} className="section-heading">Reading the Board</motion.h2>
+        <motion.p variants={fadeSlideUp} className="section-subheading">— What I Know —</motion.p>
+        <motion.h2 variants={fadeSlideUp} className="section-heading">Skills</motion.h2>
         <motion.div variants={fadeSlideUp} className="section-divider mt-4" />
       </motion.div>
 

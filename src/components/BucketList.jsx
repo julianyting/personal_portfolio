@@ -23,19 +23,19 @@ const bucketList = [
   {
     icon: FaRunning,
     title: 'Run a half marathon',
-    note: '13.1 miles. Start here.',
+    note: 'Have not ran more than 5 miles in my life but I believe.',
     done: false,
   },
   {
     icon: FaMedal,
     title: 'Run a full marathon',
-    note: '26.2. The real one.',
+    note: '26.2. This one will take a little longer but I will get there someday.',
     done: false,
   },
   {
     icon: FaGolfBall,
     title: 'Hit a hole in one',
-    note: 'One swing. Mostly luck.',
+    note: 'It only takes one shot!',
     done: false,
   },
   {
@@ -53,13 +53,13 @@ const bucketList = [
   {
     icon: FaFootballBall,
     title: 'Watch the 49ers win the Super Bowl',
-    note: 'Five rings. Time for six.',
+    note: 'When will it be my turn to be happy!',
     done: false,
   },
   {
     icon: FaMapMarkedAlt,
     title: 'Visit every pro sports stadium',
-    note: 'All 30 MLB, all 32 NFL, everything after.',
+    note: 'All 32 NFL, all 30 MLB, and all 30 NBA I will get there.',
     done: false,
   },
 ]
@@ -125,8 +125,7 @@ export default function BucketList() {
         <motion.p variants={fadeSlideUp} className="section-subheading">— Off the Clock —</motion.p>
         <motion.h2 variants={fadeSlideUp} className="section-heading">The Bucket List</motion.h2>
         <motion.p variants={fadeSlideUp} className="text-text-secondary max-w-xl mx-auto">
-          Things I&apos;m chasing outside of work. Some take training, some take practice,
-          and a couple just take a very good day.
+          Things I&apos;m chasing outside of work. Some will require hard work, some will require luck, and some will require both.
         </motion.p>
         <motion.div variants={fadeSlideUp} className="section-divider mt-4" />
       </motion.div>

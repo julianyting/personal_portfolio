@@ -80,6 +80,10 @@ export default {
           '0%, 100%': { boxShadow: '0 0 16px rgba(212,175,55,0.2)' },
           '50%':      { boxShadow: '0 0 32px rgba(212,175,55,0.5)' },
         },
+        marquee: {
+          '0%':   { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
       },
       animation: {
         shimmer:     'shimmer 3s linear infinite',
@@ -88,6 +92,7 @@ export default {
         slideUp:     'slideUp 0.5s ease-out forwards',
         tileFlip:    'tileFlip 0.4s ease-out forwards',
         breatheGold: 'breatheGold 3s ease-in-out infinite',
+        marquee:     'marquee 45s linear infinite',
       },
       borderRadius: {
         card: '10px',

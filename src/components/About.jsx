@@ -33,20 +33,16 @@ export default function About() {
         >
           <div className="border-l-4 border-luck-red pl-5 space-y-4">
             <p className="text-text-secondary leading-relaxed">
-              I&apos;m Julian Ting, I am a student at Chapman University studying Data Science.
+              Hello! I&apos;m Julian Ting, I am a student at Chapman University studying Data Science.
               I&apos;m fascinated by the intersection of statistics and strategy — whether
               that&apos;s building predictive models for sports outcomes or analyzing poker
-              hand equity at the table.
+              hand equity at the table. I am a numbers guy.
             </p>
             <p className="text-text-secondary leading-relaxed">
-              My grandparents grew up in Taiwan, and I visit often. That connection
-              to Taiwanese culture shapes how I think — precision, patience, and reading
-              patterns. The same skills that make a great mahjong player make a great
-              data scientist.
+              My favorite sports teams are the San Francisco 49ers, the Golden State Warriors, and the Pittsburgh Pirates. I am fully Chinese and love feeling connected to my heritage. I have been to Taiwan and China multiple times studying abroad in China in Summer 2025 with hopes of going back soon.
             </p>
             <p className="text-text-secondary leading-relaxed">
-              Outside of code, you&apos;ll find me building sports betting models,
-              studying poker probability theory, or exploring night markets in Taipei.
+              Outside of code, you&apos;ll find me putting in parlays on prizepicks, playing poker with friends, planning my next trip to Taiwan or China, or playing a round of golf.
             </p>
           </div>
 

@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
+import { useNavigate } from 'react-router-dom'
 import { FaGithub } from 'react-icons/fa'
-import { FiExternalLink } from 'react-icons/fi'
+import { FiExternalLink, FiArrowUpRight } from 'react-icons/fi'
 import { staggerContainer, fadeSlideUp, tileFlipIn } from '../utils/motionVariants'
 
 const projects = [
@@ -15,14 +16,15 @@ const projects = [
     demo: null,
   },
   {
-    tag: 'Deep Learning',
-    odds: '90.65%',
-    title: 'Waste Classifier',
+    tag: 'Simulation / Probability',
+    odds: '-5.26%',
+    title: 'Roulette Simulator',
     description:
-      'Custom CNN and MobileNetV2 transfer-learning model for waste image classification (90.65% test accuracy). Built a convolutional autoencoder for latent space analysis via PCA, t-SNE, and K-Means clustering.',
-    stack: ['Python', 'TensorFlow', 'MobileNetV2', 'CNN', 'K-Means', 'PCA'],
-    github: '#',
+      'Interactive American and European wheel with the full bet board, live expected-value tracking, and a bankroll chart. Monte Carlo engine runs 10,000-spin convergence tests and Martingale ruin analysis to show why every bet on the felt carries the same negative EV.',
+    stack: ['React', 'JavaScript', 'Monte Carlo', 'SVG', 'Probability'],
+    github: null,
     demo: null,
+    route: '/roulette',
   },
   {
     tag: 'Full Stack',
@@ -37,13 +39,35 @@ const projects = [
 ]
 
 function ProjectCard({ project }) {
+  const navigate = useNavigate()
+
+  // Projects with a route of their own turn the whole card into a control that
+  // opens that page; the rest stay static.
+  const target = project.route
+  const open = () => navigate(target)
+
+  const activate = (e) => {
+    if (e.key !== 'Enter' && e.key !== ' ') return
+    e.preventDefault()
+    open()
+  }
+
   return (
     <motion.div
       variants={tileFlipIn}
       whileHover={{ scale: 1.02, y: -4 }}
       whileTap={{ scale: 0.98 }}
       transition={{ duration: 0.2 }}
-      className="card-panel hover:border-luck-gold group flex flex-col gap-4 transition-colors duration-200 cursor-default"
+      onClick={target ? open : undefined}
+      onKeyDown={target ? activate : undefined}
+      role={target ? 'button' : undefined}
+      tabIndex={target ? 0 : undefined}
+      aria-label={target ? `${project.title} — open the live simulator page` : undefined}
+      className={`card-panel hover:border-luck-gold group flex flex-col gap-4
+        transition-colors duration-200 focus:outline-none
+        focus-visible:ring-2 focus-visible:ring-luck-gold focus-visible:ring-offset-2
+        focus-visible:ring-offset-felt-900
+        ${target ? 'cursor-pointer' : 'cursor-default'}`}
     >
       {/* Top row */}
       <div className="flex items-start justify-between">
@@ -78,6 +102,7 @@ function ProjectCard({ project }) {
             href={project.github}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
             className="flex items-center gap-1.5 text-text-muted hover:text-luck-gold transition-colors text-sm"
           >
             <FaGithub size={15} /> GitHub
@@ -88,10 +113,22 @@ function ProjectCard({ project }) {
             href={project.demo}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
             className="flex items-center gap-1.5 text-text-muted hover:text-luck-gold transition-colors text-sm"
           >
             <FiExternalLink size={15} /> Live Demo
           </a>
+        )}
+        {/* Not a link — the card itself is the control, so nesting one here
+            would put a button inside a button. */}
+        {target && (
+          <span className="flex items-center gap-1.5 text-luck-gold text-sm font-medium">
+            Play it live
+            <FiArrowUpRight
+              size={15}
+              className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
+            />
+          </span>
         )}
       </div>
     </motion.div>
@@ -109,7 +146,7 @@ export default function Projects() {
         className="text-center mb-12"
       >
         <motion.p variants={fadeSlideUp} className="section-subheading">— Work —</motion.p>
-        <motion.h2 variants={fadeSlideUp} className="section-heading">The Hand I&apos;ve Played</motion.h2>
+        <motion.h2 variants={fadeSlideUp} className="section-heading">Personal Projects</motion.h2>
         <motion.div variants={fadeSlideUp} className="section-divider mt-4" />
       </motion.div>
 
