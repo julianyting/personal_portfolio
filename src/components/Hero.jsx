@@ -42,7 +42,6 @@ export default function Hero() {
         >
           {/* Eyebrow */}
           <motion.p variants={fadeSlideUp} className="font-mono text-odds text-sm tracking-wider">
-            
           </motion.p>
 
           {/* Name */}

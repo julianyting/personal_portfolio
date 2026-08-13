@@ -1,0 +1,14 @@
+# Normalise line endings so the repo is consistent regardless of each
+# contributor's core.autocrlf setting. Text is stored as LF in git and checked
+# out as LF everywhere.
+* text=auto eol=lf
+
+# Binary assets must never be line-ending converted.
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.webp binary
+*.ico  binary
+*.woff  binary
+*.woff2 binary
