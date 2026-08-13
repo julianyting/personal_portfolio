@@ -4,7 +4,7 @@ import profilePhoto from '../assets/profile.webp'
 
 const stats = [
   { label: 'Major', value: 'Data Science' },
-  { label: 'Year', value: 'Junior' },
+  { label: 'Year', value: 'CO 2027' },
   { label: 'University', value: 'Chapman' },
   { label: 'Hometown', value: 'San Mateo, CA' },
 ]
@@ -33,7 +33,7 @@ export default function About() {
         >
           <div className="border-l-4 border-luck-red pl-5 space-y-4">
             <p className="text-text-secondary leading-relaxed">
-              I&apos;m Julian Ting, a junior at Chapman University studying Data Science.
+              I&apos;m Julian Ting, I am a student at Chapman University studying Data Science.
               I&apos;m fascinated by the intersection of statistics and strategy — whether
               that&apos;s building predictive models for sports outcomes or analyzing poker
               hand equity at the table.
