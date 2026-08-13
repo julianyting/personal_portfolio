@@ -1,13 +1,23 @@
 import { useState, useEffect } from 'react'
-import { motion, AnimatePresence, useScroll, useMotionValue, useTransform } from 'framer-motion'
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import useScrollSpy from '../hooks/useScrollSpy'
 
-const NAV_LINKS = ['about', 'skills', 'projects', 'experience', 'contact']
+const NAV_LINKS = [
+  { id: 'about',      label: 'About' },
+  { id: 'skills',     label: 'Skills' },
+  { id: 'projects',   label: 'Projects' },
+  { id: 'bucketlist', label: 'Bucket List' },
+  { id: 'contact',    label: 'Contact' },
+]
+
+// Hoisted so the reference stays stable — useScrollSpy depends on this array,
+// and rebuilding it each render would re-bind the scroll listener every time.
+const SECTION_IDS = ['hero', ...NAV_LINKS.map((link) => link.id)]
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const activeId = useScrollSpy(['hero', ...NAV_LINKS])
+  const activeId = useScrollSpy(SECTION_IDS)
 
   const { scrollYProgress } = useScroll()
   const progressWidth = useTransform(scrollYProgress, [0, 1], ['0%', '100%'])
@@ -49,15 +59,15 @@ export default function Navbar() {
 
           {/* Desktop links */}
           <ul className="hidden md:flex items-center gap-8">
-            {NAV_LINKS.map((id) => (
+            {NAV_LINKS.map(({ id, label }) => (
               <li key={id}>
                 <button
                   onClick={() => scrollTo(id)}
-                  className="relative group text-sm font-medium capitalize transition-colors duration-200
+                  className="relative group text-sm font-medium transition-colors duration-200
                     text-text-secondary hover:text-luck-gold"
                 >
                   <span className={activeId === id ? 'text-luck-gold' : ''}>
-                    {id}
+                    {label}
                   </span>
                   {/* Active indicator dot */}
                   {activeId === id && (
@@ -94,14 +104,14 @@ export default function Navbar() {
               className="md:hidden overflow-hidden bg-felt-950/95 border-t border-luck-goldMuted/30"
             >
               <ul className="flex flex-col py-4">
-                {NAV_LINKS.map((id) => (
+                {NAV_LINKS.map(({ id, label }) => (
                   <li key={id}>
                     <button
                       onClick={() => scrollTo(id)}
-                      className={`w-full text-left px-6 py-3 capitalize text-sm font-medium transition-colors
+                      className={`w-full text-left px-6 py-3 text-sm font-medium transition-colors
                         ${activeId === id ? 'text-luck-gold' : 'text-text-secondary hover:text-luck-gold'}`}
                     >
-                      {id}
+                      {label}
                     </button>
                   </li>
                 ))}

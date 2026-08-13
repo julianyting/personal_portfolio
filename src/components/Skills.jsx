@@ -3,83 +3,49 @@ import { staggerContainer, fadeSlideUp, tileFlipIn } from '../utils/motionVarian
 
 const skillGroups = [
   {
-    label: 'Programming & Data',
-    color: 'border-luck-gold',
+    label: 'Languages & Frameworks',
+    borderColor: 'border-luck-gold',
     textColor: 'text-luck-gold',
+    dotColor: 'bg-luck-gold',
     skills: [
-      { name: 'Python',      level: 92 },
-      { name: 'SQL',         level: 88 },
-      { name: 'R',           level: 80 },
-      { name: 'Java',        level: 68 },
-      { name: 'C++',         level: 60 },
-      { name: 'C',           level: 55 },
-      { name: 'pandas',      level: 90 },
-      { name: 'NumPy',       level: 88 },
+      'Python', 'SQL', 'MySQL', 'PostgreSQL', 'MongoDB',
+      'R', 'Java', 'C++', 'C', 'REST APIs',
     ],
   },
   {
-    label: 'Machine Learning',
-    color: 'border-odds',
+    label: 'Data Science & ML',
+    borderColor: 'border-odds',
     textColor: 'text-odds',
+    dotColor: 'bg-odds',
     skills: [
-      { name: 'scikit-learn',       level: 88 },
-      { name: 'TensorFlow',         level: 72 },
-      { name: 'XGBoost',            level: 78 },
-      { name: 'Random Forests',     level: 85 },
-      { name: 'Neural Networks',    level: 70 },
-      { name: 'Transfer Learning',  level: 72 },
-      { name: 'Feature Engineering',level: 80 },
-      { name: 'tidyverse / ggplot2',level: 75 },
+      'Pandas', 'NumPy', 'Scikit-Learn', 'TensorFlow', 'XGBoost',
+      'PCA', 'Neural Networks', 'Clustering', 'Feature Engineering', 'Transfer Learning',
     ],
   },
   {
-    label: 'Platforms & Tools',
-    color: 'border-luck-red',
+    label: 'Platforms',
+    borderColor: 'border-luck-red',
     textColor: 'text-luck-redLight',
+    dotColor: 'bg-luck-redLight',
     skills: [
-      { name: 'Git / GitHub',  level: 88 },
-      { name: 'MySQL',         level: 85 },
-      { name: 'MongoDB',       level: 72 },
-      { name: 'Docker',        level: 65 },
-      { name: 'Tableau',       level: 80 },
-      { name: 'Power BI',      level: 72 },
-      { name: 'Alteryx',       level: 60 },
-      { name: 'Google Colab',  level: 90 },
-    ],
-  },
-  {
-    label: 'Analysis & Research',
-    color: 'border-taiwan-blue',
-    textColor: 'text-blue-400',
-    skills: [
-      { name: 'Data Visualization', level: 88 },
-      { name: 'A/B Testing',        level: 75 },
-      { name: 'Hypothesis Testing', level: 78 },
-      { name: 'Data Storytelling',  level: 82 },
-      { name: 'REST APIs',          level: 78 },
-      { name: 'Excel / Sheets',     level: 85 },
-      { name: 'Technical Writing',  level: 80 },
-      { name: 'Linux',              level: 65 },
+      'Git', 'GitHub', 'Docker', 'Excel', 'DataGrip',
+      'Tableau', 'Power BI', 'Linux', 'Alteryx',
     ],
   },
 ]
 
-function SkillCard({ skill, borderColor, textColor }) {
+function SkillChip({ name, borderColor, textColor, dotColor }) {
   return (
     <motion.div
       variants={tileFlipIn}
-      className={`card-panel border-l-4 ${borderColor} space-y-2`}
+      whileHover={{ scale: 1.04, y: -2 }}
+      transition={{ duration: 0.2 }}
+      className={`card-panel border-l-4 ${borderColor} !py-3 !px-4
+        flex items-center gap-2.5 cursor-default
+        hover:border-luck-gold transition-colors duration-200`}
     >
-      <span className={`font-mono text-sm font-medium ${textColor}`}>{skill.name}</span>
-      <div className="h-0.5 w-full bg-felt-600 rounded-full overflow-hidden">
-        <motion.div
-          className="h-full bg-luck-gold rounded-full"
-          initial={{ width: 0 }}
-          whileInView={{ width: `${skill.level}%` }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: 'easeOut', delay: 0.1 }}
-        />
-      </div>
+      <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${dotColor}`} />
+      <span className={`font-mono text-sm font-medium ${textColor}`}>{name}</span>
     </motion.div>
   )
 }
@@ -94,7 +60,7 @@ export default function Skills() {
         viewport={{ once: true, margin: '-80px' }}
         className="text-center mb-12"
       >
-        <motion.p variants={fadeSlideUp} className="section-subheading">— Stack & Tools —</motion.p>
+        <motion.p variants={fadeSlideUp} className="section-subheading">— Stack &amp; Tools —</motion.p>
         <motion.h2 variants={fadeSlideUp} className="section-heading">Reading the Board</motion.h2>
         <motion.div variants={fadeSlideUp} className="section-divider mt-4" />
       </motion.div>
@@ -110,14 +76,15 @@ export default function Skills() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: '-60px' }}
-              className="grid grid-cols-2 sm:grid-cols-4 gap-4"
+              className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3"
             >
-              {group.skills.map((skill) => (
-                <SkillCard
-                  key={skill.name}
-                  skill={skill}
-                  borderColor={group.color}
+              {group.skills.map((name) => (
+                <SkillChip
+                  key={name}
+                  name={name}
+                  borderColor={group.borderColor}
                   textColor={group.textColor}
+                  dotColor={group.dotColor}
                 />
               ))}
             </motion.div>
