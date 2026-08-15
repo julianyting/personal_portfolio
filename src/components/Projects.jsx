@@ -37,7 +37,7 @@ const projects = [
     github: '#',
     demo: null,
     route: '/nba',
-    cta: 'Explore the database',
+    cta: 'Play it live',
   },
 ]
 
