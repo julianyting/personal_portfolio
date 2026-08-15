@@ -25,16 +25,19 @@ const projects = [
     github: null,
     demo: null,
     route: '/roulette',
+    cta: 'Play it live',
   },
   {
     tag: 'Full Stack',
     odds: 'REST',
     title: 'NBA Web App',
     description:
-      'Relational MySQL database modeling NBA entities and relationships. REST API in Flask managing teams, players, games, and player performance data. Parameterized SQL queries to prevent injection and support dynamic filtering.',
-    stack: ['Python', 'Flask', 'MySQL', 'REST API', 'SQL'],
+      'Relational MySQL database modeling NBA entities and relationships. REST API in Flask managing teams, players, games, and player performance data. Parameterized SQL queries to prevent injection and support dynamic filtering, plus a report builder for league-wide averages.',
+    stack: ['Python', 'Flask', 'MySQL', 'REST API', 'SQL', 'React'],
     github: '#',
     demo: null,
+    route: '/nba',
+    cta: 'Explore the database',
   },
 ]
 
@@ -62,7 +65,7 @@ function ProjectCard({ project }) {
       onKeyDown={target ? activate : undefined}
       role={target ? 'button' : undefined}
       tabIndex={target ? 0 : undefined}
-      aria-label={target ? `${project.title} — open the live simulator page` : undefined}
+      aria-label={target ? `${project.title} — open the live project page` : undefined}
       className={`card-panel hover:border-luck-gold group flex flex-col gap-4
         transition-colors duration-200 focus:outline-none
         focus-visible:ring-2 focus-visible:ring-luck-gold focus-visible:ring-offset-2
@@ -123,7 +126,7 @@ function ProjectCard({ project }) {
             would put a button inside a button. */}
         {target && (
           <span className="flex items-center gap-1.5 text-luck-gold text-sm font-medium">
-            Play it live
+            {project.cta}
             <FiArrowUpRight
               size={15}
               className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
