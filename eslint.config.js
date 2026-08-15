@@ -5,7 +5,9 @@ import reactRefresh from 'eslint-plugin-react-refresh'
 import { defineConfig, globalIgnores } from 'eslint/config'
 
 export default defineConfig([
-  globalIgnores(['dist']),
+  // Build output, not source. `.vercel/output` holds a bundled copy of the app
+  // that would otherwise fail every rule and break `npm run lint` in CI.
+  globalIgnores(['dist', '.vercel']),
   {
     files: ['**/*.{js,jsx}'],
     extends: [
